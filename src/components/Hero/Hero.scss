@@ -1,0 +1,134 @@
+@use "../../styles" as *;
+
+.hero {
+  position: relative;
+  background: $yellow;
+  overflow: hidden;
+
+  &__blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+
+    &--orange {
+      right: -90px;
+      top: -110px;
+      width: 420px;
+      height: 420px;
+      background: $orange;
+    }
+
+    &--gold {
+      left: -80px;
+      bottom: -140px;
+      width: 300px;
+      height: 300px;
+      background: $gold;
+    }
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    min-height: 480px;
+    padding-block: 3.5rem 4.5rem;
+  }
+
+  &__badge {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.08;
+
+    em {
+      font-style: normal;
+      color: $orange;
+    }
+  }
+
+  &__subtitle {
+    max-width: 420px;
+    margin: 1rem 0 1.6rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: $text-soft;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  &__logos {
+    position: relative;
+    height: 400px;
+  }
+
+  &__logo {
+    position: absolute;
+
+    &--big {
+      top: 0;
+      right: 6%;
+      width: min(340px, 85%);
+    }
+
+    &--small {
+      right: 0;
+      bottom: 0;
+      width: min(190px, 48%);
+    }
+  }
+
+  @include tablet-down {
+    &__blob--orange {
+      right: -100px;
+      top: -90px;
+      width: 300px;
+      height: 300px;
+    }
+
+    &__inner {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-block: 2.5rem 3.5rem;
+      text-align: center;
+    }
+
+    &__subtitle {
+      margin-inline: auto;
+    }
+
+    &__actions {
+      justify-content: center;
+    }
+
+    &__logos {
+      width: 100%;
+      max-width: 380px;
+      height: 300px;
+      margin-inline: auto;
+    }
+
+    &__logo--big {
+      left: 0;
+      right: auto;
+      width: 240px;
+    }
+
+    &__logo--small {
+      width: 140px;
+    }
+  }
+}

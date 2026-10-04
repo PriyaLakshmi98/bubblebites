@@ -1,0 +1,20 @@
+@use "../../styles" as *;
+
+.logo {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 14px 30px rgba($brown, 0.3);
+
+  &--flat {
+    box-shadow: none;
+  }
+
+  &--float-a {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  &--float-b {
+    animation: float-alt 5s ease-in-out infinite;
+  }
+}

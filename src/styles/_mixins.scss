@@ -1,0 +1,20 @@
+@use "variables" as *;
+
+@mixin tablet-down {
+  @media (max-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin phone-down {
+  @media (max-width: $bp-phone) {
+    @content;
+  }
+}
+
+// Centered page container with side gutters
+@mixin container {
+  max-width: $container-width;
+  margin-inline: auto;
+  padding-inline: $gutter;
+}

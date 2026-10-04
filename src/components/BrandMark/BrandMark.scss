@@ -1,0 +1,17 @@
+@use "../../styles" as *;
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: $brown;
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+
+  @include phone-down {
+    font-size: 1rem;
+  }
+}

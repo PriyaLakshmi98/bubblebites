@@ -1,0 +1,100 @@
+@use "../../styles" as *;
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: $white;
+  border-bottom: 3px solid $orange;
+
+  &__inner {
+    @include container;
+    padding-block: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.6rem;
+
+    a:not(.btn) {
+      position: relative;
+      padding: 0.25rem 0;
+      color: $brown;
+      font-size: 0.9rem;
+      text-decoration: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 3px;
+        background: $orange;
+        border-radius: 3px;
+        transition: width 0.25s;
+      }
+
+      &:hover::after,
+      &.is-active::after {
+        width: 100%;
+      }
+
+      &.is-active {
+        color: $orange;
+        font-weight: 500;
+      }
+    }
+  }
+
+  // Only shown inside the dropdown on small screens
+  &__cta-mobile {
+    display: none;
+  }
+
+  @include tablet-down {
+    &__cta {
+      display: none;
+    }
+
+    &__links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      padding: 0 $gutter;
+      overflow: hidden;
+      background: $white;
+      border-bottom: 3px solid $orange;
+      transition:
+        max-height 0.35s ease,
+        padding 0.35s ease;
+
+      &.is-open {
+        max-height: 420px;
+        padding: 0.5rem $gutter 1.1rem;
+      }
+
+      a:not(.btn) {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid $line-soft;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &__cta-mobile {
+      display: inline-block;
+      margin-top: 0.9rem;
+    }
+  }
+}

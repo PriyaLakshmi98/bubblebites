@@ -1,0 +1,22 @@
+@use "variables" as *;
+@use "animations";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  background: $cream;
+  color: $brown;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

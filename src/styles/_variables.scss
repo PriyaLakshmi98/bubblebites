@@ -1,0 +1,34 @@
+// Brand colours (taken from the Bubble Bites logos)
+$orange: #e8572a;
+$yellow: #ffd23f;
+$gold: #ffb627;
+$cream: #fff4dc;
+$brown: #2b0f10;
+$pink: #ec4899;
+$teal: #1fa3a3;
+$green: #4c8c2b;
+$white: #ffffff;
+
+$text-soft: #4a2a14;
+$line-soft: #f0e3c4;
+
+// Colours that components can pick by name, e.g. <ConfettiDot color="teal" />
+$palette: (
+  "orange": $orange,
+  "yellow": $yellow,
+  "pink": $pink,
+  "teal": $teal,
+  "green": $green,
+);
+
+// Typography
+$font-display: "Baloo 2", sans-serif;
+$font-body: "Poppins", system-ui, sans-serif;
+
+// Layout
+$container-width: 1200px;
+$gutter: 1.25rem;
+
+// Breakpoints
+$bp-tablet: 860px;
+$bp-phone: 420px;

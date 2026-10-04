@@ -1,0 +1,14 @@
+@use "../../styles" as *;
+
+.dot {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+
+  @each $name, $value in $palette {
+    &--#{$name} {
+      background: $value;
+    }
+  }
+}

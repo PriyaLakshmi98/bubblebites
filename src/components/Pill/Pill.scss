@@ -1,0 +1,10 @@
+@use "../../styles" as *;
+
+.pill {
+  display: inline-block;
+  background: $brown;
+  color: $yellow;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+}
