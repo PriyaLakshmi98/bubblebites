@@ -53,6 +53,9 @@
     em {
       font-style: normal;
       color: $orange;
+      -webkit-text-stroke: 0.07em $brown;   // dark outline
+      paint-order: stroke fill;             // draws the outline outside the letters, so they don't get thinner
+      text-shadow: 0 0.04em 0 rgba($brown, 0.35);
     }
   }
 

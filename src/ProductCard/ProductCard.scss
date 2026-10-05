@@ -1,0 +1,184 @@
+@use "sass:map";
+@use "../styles" as *;
+
+$card-colors: (
+  "yellow": #f6c453,
+  "pink": #f9a8c9,
+  "teal": #7dd3d3,
+  "orange": #f6a07a,
+);
+
+.product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.4rem;
+  border-radius: 18px;
+  color: $brown;
+  animation: rise 0.7s both;
+  transition: transform 0.25s;
+
+  @each $name, $value in $card-colors {
+    &--#{$name} {
+      background: $value;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px) rotate(-0.6deg);
+
+    .product__logo {
+      animation: float 1.2s ease-in-out infinite;
+    }
+  }
+
+  &--featured {
+    outline: 4px solid $brown;
+    outline-offset: -4px;
+  }
+
+  &__ribbon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 0.25rem 0.8rem;
+    background: $brown;
+    color: $yellow;
+    font-size: 0.72rem;
+    font-weight: 500;
+    border-radius: 999px;
+  }
+
+  &__logo {
+    margin-bottom: 0.2rem;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.35rem;
+    line-height: 1.15;
+  }
+
+  &__tagline {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: $text-soft;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.3rem;
+
+    &-label {
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: $text-soft;
+    }
+
+    strong {
+      font-family: $font-display;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+  }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 0.25rem 0.7rem;
+      background: rgba($white, 0.8);
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+  }
+
+  &__toggle {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid $brown;
+    color: $brown;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  // Smooth open / close without measuring heights
+  &__items {
+    display: grid;
+    grid-template-rows: 0fr;
+    width: 100%;
+    transition: grid-template-rows 0.35s ease;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  &__items-inner {
+    overflow: hidden;
+    min-height: 0;
+
+    section {
+      margin-top: 0.6rem;
+      padding: 0.8rem 0.9rem;
+      background: rgba($white, 0.7);
+      border-radius: 12px;
+    }
+
+    h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.25rem 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.78rem;
+    }
+
+    li::before {
+      content: "• ";
+      color: $orange;
+    }
+  }
+
+  &__soon {
+    margin: 0;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: $text-soft;
+  }
+
+  &__contacts {
+    margin: 0;
+    font-size: 0.85rem;
+
+    a {
+      color: $brown;
+      font-weight: 500;
+    }
+  }
+
+  &__cta {
+    margin-top: auto;
+    align-self: stretch;
+  }
+}
