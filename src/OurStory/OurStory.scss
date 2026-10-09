@@ -1,0 +1,343 @@
+@use "../styles" as *;
+
+.story {
+  position: relative;
+  overflow: hidden;
+  background: $gold;
+  color: $brown;
+  scroll-margin-top: 70px; // keeps the heading visible under the sticky navbar
+
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 3.5rem;
+    align-items: start;
+    padding-block: 5rem 1rem;
+
+    &--quote {
+      display: block;
+      padding-block: 1rem 5rem;
+    }
+
+    @include tablet-down {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+      padding-block: 3.2rem 0.5rem;
+
+      &--quote {
+        padding-block: 1rem 3.2rem;
+      }
+    }
+  }
+
+  // ---- floating food emojis -------------------------------------------
+  &__floater {
+    position: absolute;
+    z-index: 0;
+    font-size: 2.2rem;
+    pointer-events: none;
+
+    &--1 { left: 3%;  top: 40px;     animation: float 6s ease-in-out infinite; }
+    &--2 { right: 6%; top: 30px;     animation: float-alt 7s ease-in-out infinite; }
+    &--3 { right: 3%; bottom: 280px; animation: float 8s ease-in-out infinite 1s; }
+
+    @include tablet-down {
+      font-size: 1.6rem;
+      &--3 { display: none; }
+    }
+  }
+
+  // ---- heading ---------------------------------------------------------
+  &__title {
+    margin: 0 0 0.8rem;
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 8vw, 4.5rem);
+    line-height: 1;
+
+    span {
+      display: inline-block;
+      padding: 0 0.3em 0.08em;
+      border-radius: 0.28em;
+      background: $brown;
+      color: $yellow;
+      transform: rotate(-2deg);
+      animation: pop 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+    }
+  }
+
+  &__lead {
+    max-width: 34rem;
+    margin: 1.4rem 0 2.4rem;
+    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  // ---- timeline --------------------------------------------------------
+  &__timeline {
+    --progress: 0%;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 3.4rem;
+    list-style: none;
+
+    // dashed track
+    &::before,
+    // orange line that fills as you scroll
+    &::after {
+      content: "";
+      position: absolute;
+      left: 1.15rem;
+      top: 0.5rem;
+      width: 4px;
+      border-radius: 4px;
+    }
+
+    &::before {
+      bottom: 0.5rem;
+      background: repeating-linear-gradient(to bottom, $brown 0 8px, transparent 8px 16px);
+      opacity: 0.3;
+    }
+
+    &::after {
+      height: var(--progress);
+      max-height: calc(100% - 1rem);
+      background: $orange;
+    }
+
+    @include phone-down {
+      padding-left: 2.9rem;
+      &::before,
+      &::after { left: 0.9rem; }
+    }
+  }
+
+  &__step {
+    position: relative;
+    margin-bottom: 1.2rem;
+    padding: 1.1rem 1.4rem;
+    border: 2px solid transparent;
+    border-radius: 1.2rem;
+    background: rgba($white, 0.35);
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+
+    &:last-child { margin-bottom: 0; }
+
+    &:hover {
+      background: rgba($white, 0.7);
+      border-color: $brown;
+      transform: translateX(6px);
+    }
+
+    h3 {
+      margin: 0 0 0.2rem;
+      font-family: $font-display;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: $text-soft;
+    }
+
+    @include phone-down {
+      padding: 0.9rem 1rem;
+      p { font-size: 0.92rem; }
+    }
+  }
+
+  &__dot {
+    position: absolute;
+    left: -3.4rem;
+    top: 0.8rem;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid $brown;
+    border-radius: 50%;
+    background: $white;
+    font-size: 1.15rem;
+    transition: background 0.4s, transform 0.5s;
+
+    .is-on & {
+      background: $orange;
+      transform: scale(1.15) rotate(360deg);
+    }
+
+    @include phone-down {
+      left: -2.9rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      font-size: 1rem;
+    }
+  }
+
+  // ---- stats card ------------------------------------------------------
+  &__aside {
+    position: sticky;
+    top: 5.5rem;
+
+    @include tablet-down {
+      position: static;
+      margin-right: 0.9rem; // room for the offset shadow
+    }
+  }
+
+  &__stats {
+    position: relative;
+    padding: 0.6rem 1.8rem;
+    border-radius: 1.8rem;
+    background: $white;
+    box-shadow: 0.9rem 0.9rem 0 $orange;
+
+    // tablet: three stats side by side
+    @include tablet-down {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      padding: 1.6rem 1.2rem 1rem;
+    }
+
+    // phone: back to one per row
+    @include phone-down {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0.8rem 1.2rem;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: -1rem;
+    right: -0.6rem;
+    padding: 0.4rem 1rem;
+    border-radius: 99px;
+    background: $pink;
+    color: $white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transform: rotate(8deg);
+    animation: wobble 2.5s ease-in-out infinite;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 2px dashed $line-soft;
+
+    &:last-child { border-bottom: 0; }
+
+    @include tablet-down {
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.4rem 0.2rem;
+      text-align: center;
+      border-bottom: 0;
+    }
+
+    @include phone-down {
+      flex-direction: row;
+      padding: 0.9rem 0;
+      text-align: left;
+      border-bottom: 2px dashed $line-soft;
+      &:last-child { border-bottom: 0; }
+    }
+  }
+
+  &__stat-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 1.1rem;
+    font-size: 1.9rem;
+    transition: transform 0.4s;
+
+    &--yellow { background: rgba($yellow, 0.4); }
+    &--orange { background: rgba($orange, 0.15); }
+    &--teal   { background: rgba($teal, 0.18); }
+
+    .story__stat:hover & { transform: rotate(-12deg) scale(1.15); }
+  }
+
+  &__stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: $text-soft;
+  }
+
+  &__stat-value {
+    display: block;
+    font-family: $font-display;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.1;
+    color: $orange;
+  }
+
+  // ---- closing quote ---------------------------------------------------
+  &__quote {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 2.8rem 1.5rem 3rem;
+    border-radius: 2rem;
+    background: $brown;
+    color: $white;
+    text-align: center;
+    font-size: clamp(1.2rem, 3.6vw, 2.3rem);
+    line-height: 1.35;
+
+    @include phone-down {
+      padding: 2rem 1rem 2.4rem;
+      border-radius: 1.4rem;
+    }
+  }
+
+  &__quote-line {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s, transform 0.7s;
+
+    &:last-of-type {
+      font-weight: 800;
+      color: $yellow;
+    }
+
+    .is-in & {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  &__heart {
+    display: inline-block;
+    animation: heartbeat 1.1s infinite;
+  }
+
+  &__quote-bar {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 8px;
+    background: linear-gradient(90deg, $orange 20%, $pink 20% 40%, $teal 40% 60%, $green 60% 80%, $yellow 80%);
+  }
+
+  // no motion: show everything straight away
+  @media (prefers-reduced-motion: reduce) {
+    &__quote-line {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

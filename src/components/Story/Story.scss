@@ -1,0 +1,186 @@
+@use "../../styles" as *;
+
+.story {
+  position: relative;
+  // brand colours: golden yellow background with dark brown text (same brown as the logo)
+  background: $gold;
+  color: $brown;
+  overflow: hidden;
+  scroll-margin-top: 70px; // keeps the heading visible under the sticky navbar
+
+  // big soft circles in the corners, same idea as the hero
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: -150px;
+    right: -130px;
+    width: 380px;
+    height: 380px;
+    background: $yellow;
+  }
+
+  &::after {
+    bottom: -140px;
+    left: -100px;
+    width: 280px;
+    height: 280px;
+    background: $orange;
+    opacity: 0.85;
+  }
+
+  // confetti dots would land on the text on small screens, so they only show on laptop
+  > .dot {
+    @include tablet-down {
+      display: none;
+    }
+  }
+
+  // flex row: the aside is centred vertically against the text
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 4.5rem;
+    padding-block: 5rem 5.5rem;
+
+    @include tablet-down {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 3.2rem;
+      padding-block: 3.2rem 5rem;
+    }
+  }
+
+  &__text {
+    flex: 1.5 1 0;
+    min-width: 0;
+  }
+
+  &__aside {
+    position: relative;
+    flex: 1 1 0;
+    max-width: 440px;
+    margin-right: 14px; // room for the offset shape behind the card
+    --stat-shadow: #{$brown};
+
+    @include tablet-down {
+      flex: none;
+      width: 100%;
+      max-width: 460px;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    right: -26px;
+    bottom: -40px;
+    border: 4px solid $white;
+
+    @include tablet-down {
+      width: 78px !important;
+      height: 78px !important;
+      right: -8px;
+      bottom: -34px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.1;
+
+    // short orange underline
+    &::after {
+      content: "";
+      display: block;
+      width: 84px;
+      height: 7px;
+      margin-top: 0.7rem;
+      background: $orange;
+      border-radius: 7px;
+    }
+  }
+
+  &__subtitle {
+    margin: 1.2rem 0 2rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.45;
+    color: $brown;
+  }
+
+  &__paragraph {
+    margin: 0 0 1.4rem;
+    font-size: 1.02rem;
+    line-height: 1.9;
+    color: $brown;
+
+    // opening paragraph: a bit bigger
+    &--lead {
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    // pull-quote: white box with a solid offset shadow, like the stat card
+    &--highlight {
+      margin-block: 1.8rem;
+      padding: 1.2rem 1.5rem;
+      background: $white;
+      border-radius: 18px;
+      box-shadow: 7px 7px 0 $orange;
+      font-family: $font-display;
+      font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+      line-height: 1.4;
+    }
+  }
+
+  // closing lines in a dark brown box
+  &__closing {
+    margin-top: 2.2rem;
+    padding: 1.5rem 1.8rem;
+    background: $brown;
+    border-radius: 22px;
+    color: $cream;
+
+    p {
+      margin: 0;
+      font-family: $font-display;
+      font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+      line-height: 1.55;
+    }
+
+    p:last-child {
+      color: $yellow;
+      font-weight: 700;
+    }
+  }
+
+  // Slide in when the section scrolls into view
+  &__text,
+  &__aside {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease;
+  }
+
+  &__aside {
+    transition-delay: 0.2s;
+  }
+
+  &.is-visible &__text,
+  &.is-visible &__aside {
+    opacity: 1;
+    transform: none;
+  }
+}

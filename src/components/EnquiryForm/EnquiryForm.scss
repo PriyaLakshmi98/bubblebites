@@ -1,0 +1,83 @@
+@use "../../styles" as *;
+
+.enquiry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.8rem;
+  background: $white;
+  color: $brown;
+  border-radius: 24px;
+  // solid yellow shape peeking out behind the card, same idea as the story card
+  box-shadow: 12px -10px 0 $yellow;
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  &__intro {
+    margin: -0.5rem 0 0.2rem;
+    font-size: 0.9rem;
+    color: $text-soft;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: $cream;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      color: $brown;
+      font: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $orange;
+      }
+
+      &[aria-invalid="true"] {
+        border-color: #c0261b;
+      }
+    }
+  }
+
+  &__error {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #c0261b;
+  }
+
+  &__submit {
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+
+  &__sent {
+    margin: 0;
+    padding: 0.7rem 0.9rem;
+    background: $cream;
+    border-radius: 12px;
+    font-size: 0.85rem;
+  }
+
+  @include phone-down {
+    padding: 1.4rem 1.2rem;
+    box-shadow: 8px -8px 0 $yellow;
+  }
+}

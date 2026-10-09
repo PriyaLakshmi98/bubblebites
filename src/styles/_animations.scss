@@ -52,3 +52,33 @@
     transition: none !important;
   }
 }
+
+// Used by the Our story section
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(-14deg);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-4deg) scale(1.06);
+  }
+}
+
+@keyframes heartbeat {
+  15% {
+    transform: scale(1.35);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.25);
+  }
+}

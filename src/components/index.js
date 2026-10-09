@@ -7,3 +7,6 @@ export { default as Logo } from "./Logo";
 export { default as MenuToggle } from "./MenuToggle";
 export { default as Navbar } from "./Navbar";
 export { default as Pill } from "./Pill";
+export { default as Franchise } from "./Franchise";
+export { default as LocationMap } from "./LocationMap";
+export { default as Locations } from "./Locations";

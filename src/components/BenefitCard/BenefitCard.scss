@@ -1,0 +1,43 @@
+@use "../../styles" as *;
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: $white;
+  color: $brown;
+  border-radius: 20px;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 6px 6px 0 $yellow;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 0.3rem;
+    background: $cream;
+    border-radius: 50%;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: $text-soft;
+  }
+}
