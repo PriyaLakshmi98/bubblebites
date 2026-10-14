@@ -6,7 +6,7 @@ export default function BrandMark({ href = "#home", name = "BUBBLE BITES", ...re
   return (
     <a className="brand" href={href} {...rest}>
       <Logo size={44} shadow={false} alt="" />
-      <span>{name}</span>
+      <span className="brand_name">{name}</span>
     </a>
   );
 }

@@ -1,20 +1,30 @@
+
+import { useTranslation } from "react-i18next";
+
 import Button from "../Button";
 import ConfettiDot from "../ConfettiDot";
 import Logo from "../Logo";
-import Pill from "../Pill";
+// import Pill from "../Pill";
 import "./Hero.scss";
 
-/** Yellow landing section: headline, two buttons, floating logos and confetti dots. */
 export default function Hero({
   id = "home",
-  badge,
-  titleBefore,
-  highlight,
-  titleAfter,
-  subtitle,
-  primaryCta,
-  secondaryCta,
+  badge = "hero.badge",
+  titleBefore = "hero.titleBefore",
+  highlight = "hero.highlight",
+  titleAfter = "hero.titleAfter",
+  subtitle = "hero.subtitle",
+  primaryCta = {
+    label: "hero.primaryCta",
+    href: "#menu",
+  },
+  secondaryCta = {
+    label: "hero.secondaryCta",
+    href: "#franchise",
+  },
 }) {
+  const { t } = useTranslation();
+
   return (
     <section className="hero" id={id}>
       <div className="hero__blob hero__blob--orange" />
@@ -27,30 +37,40 @@ export default function Hero({
 
       <div className="hero__inner">
         <div className="hero__text">
+          {/* <Pill>{t(badge)}</Pill> */}
 
           <h1 className="hero__title rise" style={{ animationDelay: ".15s" }}>
-            {titleBefore}
-            <em>{highlight}</em>
-            {titleAfter}
+            {t(titleBefore)}
+            <em>{t(highlight)}</em>
+            {t(titleAfter)}
           </h1>
 
           <p className="hero__subtitle rise" style={{ animationDelay: ".3s" }}>
-            {subtitle}
+            {t(subtitle)}
           </p>
 
           <div className="hero__actions rise" style={{ animationDelay: ".45s" }}>
             <Button variant="dark" href={primaryCta.href}>
-              {primaryCta.label}
+              {t(primaryCta.label)}
             </Button>
+
             <Button variant="white" href={secondaryCta.href}>
-              {secondaryCta.label}
+              {t(secondaryCta.label)}
             </Button>
           </div>
         </div>
 
         <div className="hero__logos">
-          <Logo variant="paniPuri" float="a" className="hero__logo hero__logo--big" />
-          <Logo variant="biteSip" float="b" className="hero__logo hero__logo--small" />
+          <Logo
+            variant="paniPuri"
+            float="a"
+            className="hero__logo hero__logo--big"
+          />
+          <Logo
+            variant="biteSip"
+            float="b"
+            className="hero__logo hero__logo--small"
+          />
         </div>
       </div>
     </section>

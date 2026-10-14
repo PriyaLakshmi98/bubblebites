@@ -100,3 +100,55 @@
 }
 
 
+.nav__language {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav__language-label {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.nav__language-select {
+  min-width: 115px;
+  padding: 8px 28px 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  outline-offset: 3px;
+}
+
+.nav__language-desktop {
+  display: flex;
+  align-items: center;
+}
+
+.nav__language-desktop .nav__language {
+  margin: 0 12px;
+}
+
+.nav__links .nav__language {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav__language-desktop {
+    display: none;
+  }
+
+  .nav__links .nav__language {
+    display: flex;
+    padding: 12px 0;
+  }
+
+  .nav__links .nav__language-select {
+    flex: 1;
+  }
+}
+

@@ -1,4 +1,7 @@
+
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 import BrandMark from "../BrandMark";
 import Button from "../Button";
 import MenuToggle from "../MenuToggle";
@@ -6,10 +9,12 @@ import { navCta, navLinks } from "../../data/navLinks";
 import { cx } from "../../utils/cx";
 import "./Navbar.scss";
 
-/**
- * Sticky top bar. On tablet and phone widths the links collapse into a dropdown
- * opened by the hamburger button.
- */
+const languages = [
+  { code: "en", label: "English" },
+  { code: "ta", label: "தமிழ்" },
+  { code: "ml", label: "മലയാളം" },
+];
+
 export default function Navbar({
   links = navLinks,
   cta = navCta,
@@ -17,6 +22,15 @@ export default function Navbar({
 }) {
   const [open, setOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState("");
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = (
+    i18n.resolvedLanguage || i18n.language || "en"
+  ).split("-")[0];
+
+  const handleLanguageChange = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
 
   useEffect(() => {
     const updateHash = () => {
@@ -24,7 +38,6 @@ export default function Navbar({
     };
 
     updateHash();
-
     window.addEventListener("hashchange", updateHash);
 
     return () => {
@@ -34,6 +47,24 @@ export default function Navbar({
 
   const close = () => setOpen(false);
   const currentHref = activeHref ?? currentHash;
+
+  const languageDropdown = (
+    <div className="nav__language">
+      <select
+        id="nav-language-select"
+        className="nav__language-select"
+        value={currentLanguage}
+        onChange={handleLanguageChange}
+        aria-label={t("navbar.selectLanguage")}
+      >
+        {languages.map((language) => (
+          <option key={language.code} value={language.code}>
+            {language.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 
   return (
     <header className="nav">
@@ -56,22 +87,30 @@ export default function Navbar({
                 aria-current={isActive ? "location" : undefined}
                 onClick={close}
               >
-                {link.label}
+                {t(link.labelKey)}
               </a>
             );
           })}
+
+          {/* Language selector in the mobile menu */}
+          {languageDropdown}
 
           <Button
             className="nav__cta-mobile"
             href={cta.href}
             onClick={close}
           >
-            {cta.label}
+            {t(cta.labelKey)}
           </Button>
         </nav>
 
+        {/* Language selector on desktop */}
+        <div className="nav__language-desktop">
+          {languageDropdown}
+        </div>
+
         <Button className="nav__cta" href={cta.href}>
-          {cta.label}
+          {t(cta.labelKey)}
         </Button>
 
         <MenuToggle

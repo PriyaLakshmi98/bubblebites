@@ -8,5 +8,21 @@
         "getFranchise": "Get franchise",
         "language": "Language",
         "selectLanguage": "Select language"
+    },
+    "hero": {
+        "badge": "Franchise open",
+        "titleBefore": "Where every bite tells a ",
+        "highlight": "flavourful",
+        "titleAfter": " story",
+        "subtitle": "Pani puri, waffles and fried chicken, served fresh from our colourful carts.",
+        "primaryCta": "Explore menu",
+        "secondaryCta": "Start a franchise"
+    },
+    "footer": {
+        "tagline": "Bite. Sip. Repeat.",
+        "text": "Where every bite tells a flavourful story.",
+        "explore": "Explore",
+        "callUs": "Call us",
+        "copyright": "© {{year}} Bubble Bites. All rights reserved."
     }
 }
