@@ -10,3 +10,4 @@ export { default as Pill } from "./Pill";
 export { default as Franchise } from "./Franchise";
 export { default as LocationMap } from "./LocationMap";
 export { default as Locations } from "./Locations";
+export { default as Footer } from "./Footer";

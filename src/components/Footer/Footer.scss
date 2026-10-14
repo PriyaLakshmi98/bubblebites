@@ -1,0 +1,98 @@
+@use "../../styles" as *;
+
+.footer {
+  background: $brown;
+  color: $cream;
+
+  &__inner {
+    @include container;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem 4rem;
+    padding-block: 3.5rem 2.5rem;
+  }
+
+  &__brand {
+    display: flex;
+    flex: 2 1 280px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+
+    .brand {
+      color: $cream;
+    }
+  }
+
+  &__tagline {
+    margin: 0.4rem 0 0;
+    color: $yellow;
+    font-family: $font-display;
+    font-size: 1.5rem;
+  }
+
+  &__text {
+    margin: 0;
+    max-width: 320px;
+    opacity: 0.8;
+  }
+
+  &__insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    background: $yellow;
+    border-radius: 999px;
+    color: $brown;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-3px);
+    }
+  }
+
+  &__col {
+    flex: 1 1 140px;
+
+    h3 {
+      margin: 0 0 0.9rem;
+      color: $yellow;
+      font-family: $font-display;
+      font-size: 1.15rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      color: $cream;
+      opacity: 0.85;
+      text-decoration: none;
+
+      &:hover {
+        color: $yellow;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__copy {
+    margin: 0;
+    padding: 1.2rem $gutter;
+    border-top: 1px solid rgba($cream, 0.15);
+    font-size: 0.85rem;
+    opacity: 0.7;
+    text-align: center;
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "navbar": {
+        "home": "Home",
+        "menu": "Menu",
+        "story": "Our story",
+        "franchise": "Franchise",
+        "contact": "Contact",
+        "getFranchise": "Get franchise",
+        "language": "Language",
+        "selectLanguage": "Select language"
+    }
+}

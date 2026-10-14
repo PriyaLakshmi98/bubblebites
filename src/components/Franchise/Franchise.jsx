@@ -15,12 +15,12 @@ export default function Franchise({ content = defaultContent, contact = defaultC
   const [ref, seen] = useInView();
 
   return (
-    <section ref={ref} id={content.id} className={cx("franchise", seen && "is-visible")}>
+    <section ref={ref}  className={cx("franchise", seen && "is-visible")}>
       <ConfettiDot color="yellow" size={16} left="6%" top="7%" />
       <ConfettiDot color="teal" size={20} right="7%" top="14%" delay={1} />
       <ConfettiDot color="pink" size={13} left="50%" bottom="9%" delay={0.5} />
 
-      <div className="franchise__inner">
+      <div className="franchise__inner" id={content.id}>
         <header className="franchise__header">
           <Pill>{content.eyebrow}</Pill>
           <h2 className="franchise__title">{content.title}</h2>

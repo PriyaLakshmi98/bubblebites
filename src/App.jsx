@@ -1,7 +1,7 @@
 import { Navbar } from "./components";
 import HomePage from "./pages/Home";
 import Menu from "./Menu";
-import { ColorStrip,Franchise,Locations } from "./components";
+import { ColorStrip,Franchise,Locations,Footer } from "./components";
 import OurStory from "./OurStory";
 
 export default function App() {
@@ -16,6 +16,7 @@ export default function App() {
       <OurStory />
       <Franchise />
       <Locations />
+      <Footer />
     </>
   );
 }
